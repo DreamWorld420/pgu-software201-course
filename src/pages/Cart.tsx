@@ -28,29 +28,6 @@ export type CartItem = {
 };
 
 const Cart = () => {
-	// const [, setCart] = React.useState<CartItem[]>([
-	// {
-	// 	id: "1",
-	// 	price: "55",
-	// 	name: "shirt",
-	// 	quantity: 5,
-	// 	picture: "https://www.tretorn.eu/pub_images/original/475873011_2.jpg",
-	// },
-	// {
-	// 	id: "2",
-	// 	price: "55",
-	// 	name: "shirt",
-	// 	quantity: 5,
-	// 	picture: "https://www.tretorn.eu/pub_images/original/475873011_2.jpg",
-	// },
-	// {
-	// 	id: "3",
-	// 	price: "55",
-	// 	name: "shirt",
-	// 	quantity: 5,
-	// 	picture: "https://www.tretorn.eu/pub_images/original/475873011_2.jpg",
-	// },
-	// ]);
 	const {
 		store: { cart },
 		setStore,
@@ -99,7 +76,11 @@ const Cart = () => {
 								<Tr key={cartItem.name} maxH={"64px"} h="64px">
 									<Td textAlign={"center"} verticalAlign={"center"}>
 										<AspectRatio w={"64px"} ratio={1}>
-											<Image src={cartItem.picture} w="full" h="full" />
+											<Image
+												src={`localhost:3000/${cartItem.picture}`}
+												w="full"
+												h="full"
+											/>
 										</AspectRatio>
 									</Td>
 									<Td textAlign={"center"} verticalAlign={"center"}>

@@ -35,7 +35,7 @@ const SinglePost = () => {
 		>
 			<HStack>
 				<AspectRatio minH={"20rem"} h="full" ratio={1}>
-					<Image src={post?.img} />
+					<Image src={`localhost:3000/${post?.img}`} />
 				</AspectRatio>
 				<Box>
 					<Text fontSize="3xl">{post?.name}</Text>

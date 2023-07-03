@@ -188,7 +188,7 @@ const Search: React.FC = () => {
 												borderColor={"blackAlpha.300"}
 												ratio={1}
 											>
-												<Image src={result.img} />
+												<Image src={`localhost:3000/${result.img}`} />
 											</AspectRatio>
 											<Box mt="0.75rem" display={"flex"} flexDir={"column"}>
 												<Text fontWeight={500}>{result.name}</Text>
