@@ -13,9 +13,11 @@ import { useFormik } from "formik";
 import axiosInstance from "../../api";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import useStore from "../../hooks/useStore";
 
 const LoginCard: React.FC = () => {
 	const [isLoading, setIsLoading] = useState(false);
+	const { setStore } = useStore();
 	const navigate = useNavigate();
 	const formik = useFormik({
 		initialValues: {
@@ -30,7 +32,13 @@ const LoginCard: React.FC = () => {
 			setIsLoading(true);
 			axiosInstance
 				.post("/user/login", values)
-				.then(() => {
+				.then((res) => {
+					setStore((store) => ({
+						...store,
+						token: res.data.token,
+						username: res.data.username,
+					}));
+					localStorage.setItem("token", res.data.token);
 					toast.success("Login successful");
 				})
 				.catch(() => {

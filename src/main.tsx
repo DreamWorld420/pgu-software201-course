@@ -13,6 +13,10 @@ import Register from "./pages/Register";
 import Add from "./pages/Add";
 import Panel from "./pages/Panel";
 import Search from "./pages/Search";
+import { StoreProvider } from "./store";
+import PrivateRoute from "./components/PrivateRoute";
+import Cart from "./pages/Cart";
+import SinglePost from "./pages/SinglePost";
 
 const router = createBrowserRouter([
 	{
@@ -25,7 +29,11 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "panel",
-		element: <Panel />,
+		element: (
+			// <PrivateRoute>
+			<Panel />
+			// </PrivateRoute>
+		),
 		children: [
 			{
 				index: true,
@@ -39,12 +47,21 @@ const router = createBrowserRouter([
 				path: "search",
 				element: <Search />,
 			},
+			{
+				path: "cart",
+				element: <Cart />,
+			},
+			{
+				path: "post/:postId",
+				element: <SinglePost />,
+			},
 		],
 	},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-	<React.StrictMode>
+	// <React.StrictMode>
+	<StoreProvider>
 		<ChakraProvider theme={theme}>
 			<ToastContainer
 				position="bottom-right"
@@ -63,5 +80,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 				<RouterProvider router={router} />
 			</RootContainer>
 		</ChakraProvider>
-	</React.StrictMode>
+	</StoreProvider>
+	// {/* </React.StrictMode> */}
 );

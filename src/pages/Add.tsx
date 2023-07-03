@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	Center,
 	GridItem,
@@ -11,8 +11,10 @@ import {
 import { useFormik } from "formik";
 import axiosInstance from "../api";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
 
 const Add: React.FC = () => {
+	const [isLoading, setIsLoading] = useState(false);
 	const formik = useFormik({
 		initialValues: {
 			username: "",
@@ -21,7 +23,16 @@ const Add: React.FC = () => {
 			username: Yup.string().required(),
 		}),
 		onSubmit(values) {
-			axiosInstance.get(`/p/collect/${values.username}`);
+			setIsLoading(true);
+
+			axiosInstance
+				.get(`/p/collect/${values.username}`)
+				.then(() => {
+					toast.success(`${values.username} added successfully`);
+				})
+				.catch(() => {
+					toast.error("something bad happened!");
+				});
 			formik.resetForm();
 		},
 	});
@@ -44,10 +55,10 @@ const Add: React.FC = () => {
 					fontWeight={"medium"}
 					mb="0.5rem"
 				>
-					Add Store
+					Add a shop
 				</Text>
 				<Text color={"blackAlpha.700"} fontSize={16}>
-					add an Instagram store page to your account
+					add an Instagram shop page to your account
 				</Text>
 				<Box onSubmit={formik.handleSubmit} mt="1.5rem" as="form">
 					<SimpleGrid columns={2} columnGap={"1rem"}>
@@ -55,7 +66,7 @@ const Add: React.FC = () => {
 							<Input
 								w="full"
 								variant={"filled"}
-								placeholder="Store Username"
+								placeholder="Shop username"
 								borderRadius={"0.25rem"}
 								border="1px solid"
 								borderColor="blackAlpha.300"

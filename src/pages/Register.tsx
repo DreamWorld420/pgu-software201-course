@@ -34,6 +34,7 @@ const Register: React.FC = () => {
 			axiosInstance
 				.post("/user/register", values)
 				.then(() => {
+					navigate("/");
 					toast.success("Register successful");
 				})
 				.catch((err) => {
