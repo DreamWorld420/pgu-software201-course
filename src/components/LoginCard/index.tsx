@@ -40,6 +40,7 @@ const LoginCard: React.FC = () => {
 					}));
 					localStorage.setItem("token", res.data.token);
 					toast.success("Login successful");
+					navigate("/panel/add");
 				})
 				.catch(() => {
 					toast.error("Login failed");
