@@ -69,12 +69,10 @@ interface PostResponse {
 const Search: React.FC = () => {
 	const [hasSearchedAtLeastOnce, setHasSearchedAtLeastOnce] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
-	const [searchResult, setSearchResult] = useState<PostResponse[]>(
-		TEST_ONLY_SEARCH_RESULT
-	);
+	const [searchResult, setSearchResult] = useState<PostResponse[]>([]);
+
 	const isEmpty = !searchResult.length;
 	const { store, setStore } = useStore();
-	// TEST_ONLY_SEARCH_RESULT
 
 	const formik = useFormik({
 		initialValues: {
