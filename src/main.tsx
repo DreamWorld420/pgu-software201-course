@@ -30,9 +30,9 @@ const router = createBrowserRouter([
 	{
 		path: "panel",
 		element: (
-			// <PrivateRoute>
-			<Panel />
-			// </PrivateRoute>
+			<PrivateRoute>
+				<Panel />
+			</PrivateRoute>
 		),
 		children: [
 			{
